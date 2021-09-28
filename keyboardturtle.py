@@ -37,11 +37,17 @@ class KeyboardTurtle(Turtle):
       print("crash")
       quit()
       
-
   def go_right(self):
     self.right(self.turn_speed)
 
+
   # Useful Methods
+
+  # This checks if object collides with another object.  
+  # Right now it checks against the other player, but 
+  # it doesn't NEED to.  It can check against any
+  # other turtle object
+
   def check_collision(self, obj_to_check):
     distance_x = obj_to_check.xcor() - self.xcor()
     distance_x = abs(distance_x)
@@ -55,5 +61,5 @@ class KeyboardTurtle(Turtle):
       return False
 
 
-    # TODO: finish setting up the inputs
+    # TODO: finish setting up the inputs (left and down)
     

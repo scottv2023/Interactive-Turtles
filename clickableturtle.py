@@ -26,14 +26,15 @@ class ClickableTurtle(Turtle):
     self.window.onscreenclick(None)
     self.onclick(self.click)
 
-
+  # Draws the button name above the button
   def draw_title(self, text, x, y):
     self.goto(self.x, self.y + 17)
     self.write(text, move=False, align='center', font=('Arial', 10, 'normal'))
     self.goto(self.x, self.y)
 
+  # tells what happens when button is clicked
   def click(self, x, y):
-    # Placeholder:  What should this button do?
+    # This is Placeholder:  What should this button do?
     print ("Click")
 
   # TODO:  
