@@ -23,7 +23,7 @@ player_2.other_player = player_1
 
 # This is needed to listen for inputs
 window.listen()
-
+window.mainloop()
 # be CAREFUL. We aren't controlling the screen draws in this program, so NO while True loops
 
 #TODO:  Check the classes and complete TODOs
