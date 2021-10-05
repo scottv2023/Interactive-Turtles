@@ -1,4 +1,5 @@
 from turtle import Turtle
+from obstacleturtle import WallTurtle
 
 class KeyboardTurtle(Turtle):
   # our 'wrapper' class of the Turtle class
@@ -8,6 +9,7 @@ class KeyboardTurtle(Turtle):
                turn_right = "Right",
                turn_left = "Left",
                back = "Down",
+               wall_turtle = WallTurtle,
                other_player = None):
     # Runs Keyboard Turtle Constructor as well as the Turtle Constructor
     Turtle.__init__(self)
@@ -19,6 +21,7 @@ class KeyboardTurtle(Turtle):
     self.back = back 
     self.turn_left = turn_left
     self.other_player = other_player
+    self.WallTurtle = wall_turtle
 
     #set turtle starting states
     self.shape("turtle")
@@ -32,14 +35,14 @@ class KeyboardTurtle(Turtle):
     self.window.onkey(self.go_back, self.back)
 
     #sets up controlling variables (y not implemented)
-    self.movement_speed = 100
-    self.turn_speed = 10
+    self.movement_speed = 2
+    self.turn_speed = 20
     self.collision_distance = 5
 
   # Movement Methods
   def go_forward(self):
     self.forward(self.movement_speed)
-    if self.check_collision(self.other_player):
+    if self.check_collision(self.wall_turtle):
       print("crash")
       quit()
       
@@ -51,7 +54,7 @@ class KeyboardTurtle(Turtle):
 
   def go_back(self):
     self.forward(-self.movement_speed)
-    if self.check_collision(self.other_player):
+    if self.check_collision(self.wall_turtle):
       print("crash")
       quit()
 

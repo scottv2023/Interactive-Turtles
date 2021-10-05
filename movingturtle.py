@@ -7,13 +7,14 @@ class MovingTurtle(Turtle):
     self.width = width
 
     # initial setup
-    self.shape("circle")
+    self.shape("turtle")
+    self.color("brown")
     self.shapesize(.5, .5, 1)
     self.penup()
     ontimer(self.move_self, 1)
 
     # variables
-    self.x_spd = 4
+    self.x_spd = .1
 
   def move_self(self):
     self.forward(self.x_spd)
