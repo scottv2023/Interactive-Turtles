@@ -1,4 +1,4 @@
-
+""""
 from turtle import Turtle, Screen
 
 
@@ -14,6 +14,7 @@ class ClickableTurtle(Turtle):
     
     # Sets up incoming variables
     self.name = name
+   
     self.x = x
     self.y = y
     self.window = Screen()

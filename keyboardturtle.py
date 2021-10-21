@@ -9,7 +9,7 @@ class KeyboardTurtle(Turtle):
                turn_right = "Right",
                turn_left = "Left",
                back = "Down",
-               wall_turtle = WallTurtle,
+               walls = None,
                other_player = None):
     # Runs Keyboard Turtle Constructor as well as the Turtle Constructor
     Turtle.__init__(self)
@@ -21,7 +21,7 @@ class KeyboardTurtle(Turtle):
     self.back = back 
     self.turn_left = turn_left
     self.other_player = other_player
-    self.WallTurtle = wall_turtle
+    self.walls = walls
 
     #set turtle starting states
     self.shape("turtle")
@@ -35,16 +35,33 @@ class KeyboardTurtle(Turtle):
     self.window.onkey(self.go_back, self.back)
 
     #sets up controlling variables (y not implemented)
-    self.movement_speed = 2
-    self.turn_speed = 20
-    self.collision_distance = 5
+    self.movement_speed = 5
+    self.turn_speed = 30
+    self.collision_distance = 1
 
   # Movement Methods
   def go_forward(self):
+    #move forward
+    
+    last_position = (self.xcor(), self.ycor())
+    collided = False
     self.forward(self.movement_speed)
-    if self.check_collision(self.wall_turtle):
-      print("crash")
-      quit()
+    
+    #check collision with walls
+    if self.walls != None:
+      for wall in self.walls:
+        if self.check_collision(wall):
+          collided = True
+
+          print ("crash")
+          
+      if collided:
+        
+        self.goto(last_position)
+        """
+        self.goto(-262,162)
+        """
+        
       
   def go_right(self):
     self.right(self.turn_speed)
@@ -54,9 +71,10 @@ class KeyboardTurtle(Turtle):
 
   def go_back(self):
     self.forward(-self.movement_speed)
-    if self.check_collision(self.wall_turtle):
-      print("crash")
-      quit()
+    for wall in self.walls:
+      if self.check_collision(wall):
+        print("crash")
+        quit()
 
   
 
@@ -69,13 +87,15 @@ class KeyboardTurtle(Turtle):
   # other turtle object
 
   def check_collision(self, obj_to_check):
+    turtle_rad = 10
+    wall_rad = 10
     distance_x = obj_to_check.xcor() - self.xcor()
     distance_x = abs(distance_x)
 
     distance_y = obj_to_check.ycor() - self.ycor()
     distance_y = abs(distance_y)
 
-    if distance_x < self.collision_distance and distance_y < self.collision_distance:
+    if distance_x < turtle_rad + (wall_rad * obj_to_check.y_size) and distance_y < turtle_rad + (wall_rad * obj_to_check.x_size):
       return True
     else:
       return False
