@@ -2,6 +2,7 @@ from turtle import Screen
 from keyboardturtle import KeyboardTurtle
 from movingturtle import MovingTurtle
 from obstacleturtle import WallTurtle
+from finishturtle import FinishTurtle
 
 
 # set up instance of the screen
@@ -14,11 +15,12 @@ window.setup(screen_width, screen_height)
 
 
 wall_list = []
+finish_list = []
 #set up players
-player_1 = KeyboardTurtle(window, walls = wall_list)
+player_1 = KeyboardTurtle(window, finish = finish_list, walls = wall_list)
 
 
-player_1.goto(-100,-95)
+player_1.goto(210,40)
 
 # set target of other player(our collison check) to the opposite player
 
@@ -26,9 +28,18 @@ moveT = MovingTurtle(screen_width)
 
 #list setup 
 
+#Create Finish
+l1 = FinishTurtle(210, -145, 4, 7)
+finish_list.append(l1)
+l1.color("lime green")
+
+
 #Create Wall
+w30 = WallTurtle(142, 50, 3.5, .25)
+wall_list.append(w30)
 
-
+w29 = WallTurtle(102, 10, 3.5, .25)
+wall_list.append(w29)
 
 w28 = WallTurtle(62, 50, 3.5, .25)
 wall_list.append(w28)

@@ -1,5 +1,6 @@
 from turtle import Turtle
 from obstacleturtle import WallTurtle
+from finishturtle import FinishTurtle
 
 class KeyboardTurtle(Turtle):
   # our 'wrapper' class of the Turtle class
@@ -10,6 +11,7 @@ class KeyboardTurtle(Turtle):
                turn_left = "Left",
                back = "Down",
                walls = None,
+               finish = None,
                other_player = None):
     # Runs Keyboard Turtle Constructor as well as the Turtle Constructor
     Turtle.__init__(self)
@@ -22,6 +24,7 @@ class KeyboardTurtle(Turtle):
     self.turn_left = turn_left
     self.other_player = other_player
     self.walls = walls
+    self.finish = finish
 
     #set turtle starting states
     self.shape("turtle")
@@ -46,6 +49,11 @@ class KeyboardTurtle(Turtle):
     last_position = (self.xcor(), self.ycor())
     collided = False
     self.forward(self.movement_speed)
+    """
+    for finish in self.finish:
+      if self.check_collision(finish):
+        print("YOU DID IT")
+    """
     
     #check collision with walls
     if self.walls != None:
@@ -56,12 +64,21 @@ class KeyboardTurtle(Turtle):
           print ("crash")
           
       if collided:
-        
+      
         self.goto(last_position)
         """
         self.goto(-262,162)
         """
-        
+        #check collision with finish
+    if self.finish != None:
+      for finish in self.finish:
+        if self.check_collision(finish):
+          collided = True
+
+          print ("YOU DID IT!")
+          
+          
+            
       
   def go_right(self):
     self.right(self.turn_speed)
@@ -75,6 +92,12 @@ class KeyboardTurtle(Turtle):
       if self.check_collision(wall):
         print("crash")
         quit()
+
+    self.forward(-self.movement_speed)
+    for finish in self.finish:
+      if self.check_collision(finish):
+        print("YOU DID IT")
+        
 
   
 
@@ -99,6 +122,22 @@ class KeyboardTurtle(Turtle):
       return True
     else:
       return False
+
+
+    #Finish Collision Radius
+    def check_collision(self, obj_to_check):
+      turtle_rad = 10
+      finish_rad = 10
+      distance_x = obj_to_check.xcor() - self.xcor()
+      distance_x = abs(distance_x)
+
+      distance_y = obj_to_check.ycor() - self.ycor()
+      distance_y = abs(distance_y)
+
+      if distance_x < turtle_rad + (finish_rad * obj_to_check.y_size) and distance_y < turtle_rad + (finish_rad * obj_to_check.x_size):
+        return True
+      else:
+        return False
 
 
     # TODO: finish setting up the inputs (left and down)
