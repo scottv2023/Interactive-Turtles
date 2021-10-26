@@ -14,9 +14,14 @@ class WallTurtle(Turtle):
     self.starting_y = starting_y
     self.x_size = x_size
     self.y_size = y_size
-    self.speed(1000)
+  
+    
 
-   
+    #defines rotation
+    
+
+
+
 
     #set turtle starting states
     self.shape("square")

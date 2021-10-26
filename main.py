@@ -20,7 +20,7 @@ finish_list = []
 player_1 = KeyboardTurtle(window, finish = finish_list, walls = wall_list)
 
 
-player_1.goto(210,40)
+player_1.goto(-230,162)
 
 # set target of other player(our collison check) to the opposite player
 
